@@ -221,10 +221,10 @@ function createOptimalOutputs(handleOutputs){
 	});
 }
 
-if (conf.storage === 'mysql'){
+if (conf.storage === 'sqlite'){
 	db.query("CREATE UNIQUE INDEX IF NOT EXISTS hcobyAddressSpentMci ON headers_commission_outputs(address, is_spent, main_chain_index)");
 	db.query("CREATE UNIQUE INDEX IF NOT EXISTS byWitnessAddressSpentMci ON witnessing_outputs(address, is_spent, main_chain_index)");
-} else if (conf.storage === 'sqlite'){
+} else if (conf.storage === 'mysql'){
 	db.query(
 	    "SELECT (IF (EXISTS( \n\
 		SELECT DISTINCT index_name \n\
